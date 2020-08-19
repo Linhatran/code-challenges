@@ -1,0 +1,5 @@
+  function list(names){
+    let str = names.map(function(x) {return x.name}).join(', ')
+    .replace(/, (?!.*, )/,' & ');
+    return str;
+}
