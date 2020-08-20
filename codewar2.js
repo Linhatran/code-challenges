@@ -9,3 +9,22 @@ function getCount(str) {
   }
   return vowelsCount;
 }
+
+//switch-case 
+function getCount(str) {
+  var vowelsCount = 0;
+  
+  // enter your majic here
+  for (i=0; i<str.length;i++) {
+     switch (str[i]) {
+       case 'a':
+       case 'u':
+       case 'e':
+       case 'o':
+       case 'i':
+       vowelsCount++;
+       break;
+     }
+  }
+  return vowelsCount;
+}
