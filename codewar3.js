@@ -12,5 +12,10 @@ function order(words){
 } 
   return finalArr.join(' ');
 }
+
+// function order(words) {
+//   return words.split(' ').sort((wordA, wordB) => wordA.match(/\d+/) > wordB.match(/\d+/)).join(' ')
+// }
+
 console.log(order("4of Fo1r pe6ople g3ood th5e the2"));
 console.log(order("is2 Thi1s T4est 3a"));
