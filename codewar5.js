@@ -1,3 +1,4 @@
+//first attempt
 function round(x) {
   if (x>255) {return x=255;}
   if (x<0) {return x=0;}
@@ -30,4 +31,14 @@ function rgb(r,g,b) {
     }
   }
     return hex.join('');
+}
+
+//second attempt 
+function toHex(d) {
+    if(d < 0 ) {return "00";}
+    if(d > 255 ) {return "FF";}
+    return  ("0"+(Number(d).toString(16))).slice(-2).toUpperCase();
+}
+function rgb(r,g,b) {
+  return toHex(r) + toHex(g) + toHex(b);
 }
