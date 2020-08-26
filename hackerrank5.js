@@ -28,15 +28,16 @@ function readLine() {
  */
 function vowelsAndConsonants(s) {
     let vowels = ['a','e','i','o','u'];
-    for (let i = 0; i < s.length; i++) {
-        if (s[i] === vowels[i]) {
-            console.log(s[i]);
-        }
-    }
-    for (let j = 0; j < s.length; j++) {
-        if (s[j] !== vowels[j]) {
-            console.log(s[j]);
-        }
-    }
-}
+    let arr = s.split('');
+    for (let i = 0;i < arr.length; i++) {
+      if (vowels.includes(s[i])) {
+        console.log(s[i])
+      } 
+      }
+  for (let i = 0;i < arr.length; i++) {
+      if (!vowels.includes(s[i])) {
+        console.log(s[i])
+      } 
+      }
+  }
 
