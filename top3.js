@@ -20,4 +20,4 @@ albums: {
 }
 }
 
-console.log(bandInfo['albums']['album1']['name'])
+console.log(`Please welcome our newest ${bandInfo['genre']} band today: ${bandInfo['name']}!!! All ${bandInfo['members']} members traveled all the way from ${bandInfo['nationality']} to perform the last two very successful albums: ${bandInfo['albums']['album1']['name']} (${bandInfo['albums']['album1']['released']}) and ${bandInfo['albums']['album2']['name']} (${bandInfo['albums']['album2']['released']})!`)
