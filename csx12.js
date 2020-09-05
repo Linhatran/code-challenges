@@ -78,3 +78,22 @@ const integerSquareRoot = n => Math.sqrt(n) % 1 === 0;
 const over100 = n => n > 100;
 const intSqRtOrOver100 = eitherCallback(integerSquareRoot, over100);
 console.log(filterArray(arrOfNums, intSqRtOrOver100)); // should log: [105, 9]
+
+
+// ADD CODE HERE
+function reduce (arr, cb, init) {
+  if (Array.isArray(arr)) {
+    let accumulator;
+    if (init === undefined) {
+      accumulator = arr[0]
+      arr = arr.slice(1)
+    } else {accumulator = init}
+    arr.forEach(num => accumulator = cb(num,accumulator))
+  	return accumulator
+  }
+  return `Please pass in an array!`
+}
+// Uncomment these to check your work!
+const nums = [4, 1, 3];
+const add = function(a, b) { return a + b; }
+console.log(reduce(nums, add, 0)); // should log 8
