@@ -42,3 +42,20 @@ const DC = {'Bruce': 'Wayne', 'Harley': 'Quinn'}
 const supernatural = {'Sam': 'Winchester', 'Dean': 'Winchester', 'Waldo': 'unknown'}
 console.log(findWaldo(DC)) // should log: 'Where's Waldo?'
 console.log(findWaldo(supernatural)) // should log: 'unknown'
+
+
+function arrayBuilder(obj) {
+  // ADD CODE HERE
+  //initialize []
+  let arr = []
+  for (let prop in obj) {
+    for (let i = 0; i < obj[prop]; i++) {
+      arr.push(prop)
+    }
+  }
+  return arr;
+}
+
+// Uncomment these to check your work!
+console.log(arrayBuilder({'cats': 2, 'dogs': 1})); // => ['cats', 'cats', 'dogs']
+// console.log(arrayBuilder({})); // => []
