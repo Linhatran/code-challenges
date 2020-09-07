@@ -1,10 +1,11 @@
 // ADD CODE HERE
 function once(cb) {
-  let counter = 0; 
+  let counter = 0; //instead of doing counter = 0; can do let hasBeenCalled = 'false';
   let result;
   return function doStuff (x) {
     counter++;
-    return (counter<=1) ? result = cb(x) : result
+    return (counter<=1) ? result = cb(x) : result //if (!hasBeenCalled) ? result = cb(x) : result
+    //can replace counter++ with hasBeenCalled = 'true'
     }
 }
 const addByTwoOnce = once(function(num) {
