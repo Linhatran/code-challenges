@@ -32,3 +32,17 @@ willCounter(); //counter 3
 
 jasCounter(); //counter 1
 willCounter(); //counter 4
+
+---------------------------------------------
+  // ADD CODE HERE
+function addByX (x) {
+  return function addNum(num) {
+    return x + num;
+  }
+}
+const addByTwo = addByX(2);
+
+// Now call addByTwo with an input of 1 and log the output
+console.log(addByTwo(1))
+// Now call addByTwo with an input of 2 and log the output
+console.log(addByTwo(2))
