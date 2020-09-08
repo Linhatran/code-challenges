@@ -1,9 +1,9 @@
 // ADD CODE HERE
 function dateStamp(func) {
   let obj = {};
-  return function (arg) {
+  return function (...arg) {
     obj.date = ( new Date() ).toString().split(' ').splice(0,4).join(' ')
-    obj.output = func(arg);
+    obj.output = func(...arg);
     return obj
   }
 }
