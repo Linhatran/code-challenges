@@ -6,6 +6,15 @@ function cycleIterator (array) {
     return currentElement.shift();
   }
 }
+
+//second way 
+function cycleIterator (array) {
+  let index = 0;
+  return function () {
+  let result = array[index++]
+  if (index >= array.length) index = 0;
+    return result;
+  }
 // Uncomment these to check your work!
 const threeDayWeekend = ['Fri', 'Sat', 'Sun'];
 const getDay = cycleIterator(threeDayWeekend);
