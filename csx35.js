@@ -1,7 +1,7 @@
 function getLength(array) {
-		let n = [];
-  	let count = 0;
-  	array.forEach(el => {n.push(el); count++})
+	let count = 0;
+	for (let element of array) {
+	count++;
   	return count;
 }
 
