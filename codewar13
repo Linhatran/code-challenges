@@ -1,6 +1,0 @@
-function domainName(url){
-  url = url.replace("https://www.", "")
-  url = url.replace("http://www.", "")
-  url = url.replace("http://", "")
-  return url.split('.')[0]
-}
