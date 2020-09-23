@@ -3,10 +3,15 @@
 
 // FUNCTION DEFINITION(S)
 function every(array, callbackFunction) {
-  var doesEveryElementMatch = true;
+  var doesEveryElementMatch;
 
   for (var i = 0; i < array.length; i++) {
-    doesEveryElementMatch = callbackFunction(array[i]);
+    if (!callbackFunction(array[i])) {
+    doesEveryElementMatch = false;
+    } else { 
+      doesEveryElementMatch = true;
+    }
+    return doesEveryElementMatch
   }
 
   return doesEveryElementMatch;
