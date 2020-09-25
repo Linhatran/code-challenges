@@ -1,17 +1,11 @@
-// // Challenge 1
-// function countdown(n) {
-//   //set base case n = 0
-  
-//   if (n === 0) {
-//     return;
-//   }
-//    console.log(n)
-//   return countdown(n-1)
-//   //recursive case: 
-//   //console.log(n)
-//   //return recursive call countdown (n-1)
-// }
+// Challenge 1
+//Write a recursive function countdown that accepts a positive integer n as an input and logs every number from n (inclusive) to 0 (exclusive) to the console.
 
-// // To check if you've completed it, uncomment these console.logs!
-// //countdown(5);
-// //countdown(10);
+function countdown(n) {
+  if (n===0) return;
+	console.log(n)
+  return countdown(n-1)
+}
+
+countdown(5);
+countdown(10);
