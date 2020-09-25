@@ -1,11 +1,11 @@
 function isPrime(num) {
-  if (num < 2) return false;
-  const limit = Math.sqrt(num);
-  for (let i = 2; i <= limit; ++i) {
+	if (num < 2) return false;
+  if (num === 2) return true;
+  // num % n === 0; n = num or 1 
+ 	for (let i = num-1; i > 1; i--) {
     if (num % i === 0) {
-      return false;
+      return false
     }
   }
-  return true;
+  return true
 }
-console.log(isPrime(2));
