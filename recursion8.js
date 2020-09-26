@@ -1,3 +1,4 @@
+//Challenge 9
 function getPermutations(arr) {
   let result = [];
 	//set basecase
@@ -11,12 +12,13 @@ function getPermutations(arr) {
     let remaining = arr.slice(0,i).concat(arr.slice(i+1, arr.length))
     
     getPermutations(remaining).forEach(permutation => {
-      result.push([current +',' + permutation])
+      let output = [current].concat(permutation)
+      result.push(output)
     })
   }
   return result
 }
 
 // console.log(getPermutations([1, 2])) //-> [[1, 2], [2, 1]]
-// console.log(getPermutations([1,2,3])) //-> [[1,2,3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
-console.log(getPermutations([2,3,4,5,6]))
+console.log(getPermutations([1,2,3])) //-> [[1,2,3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
+// console.log(getPermutations([2,3,4,5,6]))
