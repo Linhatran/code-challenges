@@ -8,8 +8,9 @@
 function flipPairs(string) {
   let output = '';
   for (let i = 0; i < string.length; i+=2) {
-    if (string[i] === undefined) {
+    if (string[i+1] === undefined) {
       output+= string[i];
+      break;
     }
     output+= string[i+1];
     output+= string[i];
