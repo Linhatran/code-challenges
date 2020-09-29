@@ -11,5 +11,11 @@ function flattenRecursively(arr) {
 	return result
 }
 
+let myArray = [[1, 2], 3, [4, [3,[5]],5]];
+function flat (array) {
+ 	return array.reduce((acc,item) => acc.concat(Array.isArray(item) ? flat(item) : item),[])
+}
+console.log(flat(myArray))
+
 console.log(flattenRecursively([1, [2, 3, [4]]])); //-> [1, 2, 3, 4]
 console.log(flattenRecursively([1, {}, [3, [[4]]]])); //-> [1, {}, 3, 4]
