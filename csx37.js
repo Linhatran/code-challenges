@@ -10,6 +10,10 @@ function flow(input, funcArray) {
   }
 }
 
+function pipe (value, arrayOfFuncs) {
+  return arrayOfFuncs.reduce((v,f) => f(v), value)
+}
+
 // To check if you've completed the challenge, uncomment this code!
 function multiplyBy2(num) { return num * 2; }
 function add7(num) { return num + 7; }
