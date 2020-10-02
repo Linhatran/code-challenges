@@ -45,14 +45,20 @@ factorial(5); // 5 * 4 * 3 * 2 * 1 === 120
 //value in the array returns true when passed as parameter to the callback function
 function all(array, cb) {
   //set base case:
-    //array.length = 1
-    //return cb(array[0])
+    //array.length = 0
+    //return true;
   //recursive call
-    //reduce length of array and return array[0] passed in cb
-  if (array.length === 1) return cb(array[0])
-  let remaining = array.slice(1);
-  return all(remaining,cb)
+    //reduce length of array by slice()
+    //if cb(array[0]), shift array, return true
+    //else return false
+  if (array.length === 0) return true;
+  if (cb(array[0])) {
+    array.shift();
+    return all(array, cb)
+  } else {
+    return false;
+  }
 }
 console.log(all([1,2,9], function(num){return num < 7;
 })); // false
-console.log(all([2,4,6,8], function(num){return num % 2 === 0}));
+console.log(all([2,4,8,2], function(num){return num % 2 === 0}));
