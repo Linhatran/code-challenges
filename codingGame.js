@@ -28,3 +28,15 @@ console.log(power(2, 3)); // 8
 console.log(power(2, 2)); // 4 
 console.log(power(2, 1)); // 2
 console.log(power(2, 0)); // 1
+
+
+//Question 3: Calculate factorial
+function factorial(n) {
+  //set base case: n = 1 => return n
+  //recursive call:
+    //n = n - 1
+    //return n* factorial(n-1)
+  if (n === 1) return n;
+  return n * factorial(n-1)
+}
+factorial(5); // 5 * 4 * 3 * 2 * 1 === 120
