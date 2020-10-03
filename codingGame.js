@@ -66,11 +66,7 @@ console.log(all([2,4,8,2], function(num){return num % 2 === 0}));
 //Question 5: find productOfArray
 
 function productOfArray (array){
-  let result = 1;
-  if (array.length === 0) return result;
-  
-  result = result * array[0]
-  
-  return result * productOfArray(array.slice(1))
+  if (array.length === 0) return 1;
+  return array.shift() * productOfArray(array)
 }
 console.log(productOfArray([10,2,3]))
