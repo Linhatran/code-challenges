@@ -19,3 +19,19 @@ console.log(flat(myArray))
 
 console.log(flattenRecursively([1, [2, 3, [4]]])); //-> [1, 2, 3, 4]
 console.log(flattenRecursively([1, {}, [3, [[4]]]])); //-> [1, {}, 3, 4]
+
+//Question 7: count number of int in a nested array
+
+function totalIntegers(array) {
+  if (array.length === 0) return 0;
+  let total = 0;
+  let first = array.shift();
+  //array is modified after using shift
+  if (Array.isArray(first)) {
+    total += totalIntegers(first);
+  } else if (Number.isInteger(first)) {
+    total++;
+  }
+  return total + totalIntegers(array)
+}
+console.log(totalIntegers([[[5], 3], 0, 2, ['foo'], [], [4, [5, 6]]])); // 7
