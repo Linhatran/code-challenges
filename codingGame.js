@@ -70,3 +70,28 @@ function productOfArray (array){
   return array.shift() * productOfArray(array)
 }
 console.log(productOfArray([10,2,3]))
+
+//Question 6: Search JS object for a value 
+var nestedObject = {
+    data: {
+        info: {
+            stuff: {
+                thing: {
+                    moreStuff: {
+                        magicNumber: 44,
+                        something: 'foo2'
+                    }
+                }
+            }
+        }
+    }
+}
+function contains (obj, value) {
+for (let key in obj) {
+  if (typeof obj[key] === 'object') return contains(obj[key], value);
+  if (obj[key] === value) return true;
+  }
+  return false;
+}
+console.log(contains(nestedObject, 44)); // true
+console.log(contains(nestedObject, "foo")); // false
