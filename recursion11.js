@@ -79,3 +79,15 @@ function replicate(times, value) {
 console.log(replicate(3, 5)) // [5, 5, 5]
 console.log(replicate(1, 69)) // [69]
 console.log(replicate(-2, 6)) // []
+
+//Question 10: quick sort an array
+const arr = [6, 1, 5, 3, 9, 6, 7, 10, 16, 4, 0, 12, 2]
+function quickSort(array) {
+  if (array.length < 2) return array;
+  const [x, ...rest] = array;
+  //partition the array into high and low
+  const high = rest.filter(num => num > x);
+  const low = rest.filter(num => num <= x);
+  return [...quickSort(low), x, ...quickSort(high)]
+}
+console.log(quickSort(arr));
