@@ -16,8 +16,7 @@ console.log(onceFunc(4));  // => should log 6
 console.log(onceFunc(10));  // => should log 6
 console.log(onceFunc(9001));  // => should log 6
 
--------------------------------------------
-	// ADD CODE HERE
+------------------------------------------
 function once(cb) {
   let counter = 0;
   let result;
