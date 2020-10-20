@@ -90,4 +90,4 @@ function quickSort(array) {
   const low = rest.filter(num => num <= x);
   return [...quickSort(low), x, ...quickSort(high)]
 }
-console.log(quickSort(arr));
+console.log(quickSort(arr))
