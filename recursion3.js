@@ -1,6 +1,6 @@
 function isPrime(num, i = num-1) {
   	if (num < 2) return false;
-  	if (i <= 1) return true;
+  	if (num === 2) return true;
   	//base case
   	if (num % i === 0 ) return false;
     return isPrime(num, i-1)
