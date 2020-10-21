@@ -15,3 +15,19 @@ function shuffleTests() {
 }
 
 //shuffleTests() // Determine a way to test this function!
+
+function findMissing(array, n = array.length) {
+	array.sort((a,b) => a - b);
+  for (let i = 0; i < n; i++) {
+    if (array[i] !== i) return i;
+  }
+}
+
+function findMissingTests() {
+  console.log(findMissing([0, 1, 2, 3, 4, 5, 7]), ' -> 6');
+  console.log(findMissing([7, 5, 4, 3, 2, 1, 0]), ' -> 6');
+  console.log(findMissing([0, 7, 1, 5, 2, 4, 3]), ' -> 6');
+  
+}
+
+findMissingTests() 
