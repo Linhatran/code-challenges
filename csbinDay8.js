@@ -33,29 +33,29 @@ function containsDuplicates(arr) {
 function createFib() {
   let memo = {}
 	
-  function fib(n) {
+  return function fib(n) {
     if (n === 0) return 0;
     if (n === 1) return 1;
     // add another base case;
-		
-    let fibn = fib(n-1) + fib(n-2);
-    // what should we do with fibn
-    memo[n] = fibn;
- 		console.log(memo)
-    return fibn
+		if (n < 0) return null;
+    if (n in memo) {
+      return memo[n];
+    } else {
+      memo[n] = fib(n-1) + fib(n-2);
+      return memo[n];
+    }
   }
-	console.log(memo)
-  return fib
+  
 }
 
 const fib = createFib();
 
 //To check if you've completed the challenge, uncomment these console.logs!
-//console.log(fib(0)); // -> 0
-//console.log(fib(5)); // -> 5
-//console.log(fib(37)); // -> 24157817
-
-//console.log(fib(45)); // only uncomment me if you're sure that memoization is working
+console.log(fib(0)); // -> 0
+console.log(fib(5)); // -> 5
+console.log(fib(37)); // -> 24157817
+console.log(fib(-3))
+console.log(fib(45)); // only uncomment me if you're sure that memoization is working
 
 
 
@@ -103,8 +103,8 @@ function balancedParens(str) {
 }
 
 // To check if you've completed the challenge, uncomment these console.logs!
-console.log(balancedParens('()')); // -> true
-console.log(balancedParens(')(')); // -> false
-console.log(balancedParens('(()(()))')); // -> true
-console.log(balancedParens('((()')); // -> false
-console.log(balancedParens('((()))))))))')); ///false
+// console.log(balancedParens('()')); // -> true
+// console.log(balancedParens(')(')); // -> false
+// console.log(balancedParens('(()(()))')); // -> true
+// console.log(balancedParens('((()')); // -> false
+// console.log(balancedParens('((()))))))))')); ///false
