@@ -33,3 +33,12 @@ const addByTwoOnce = once(function(num) {
 console.log(addByTwoOnce(5));  //should log 7
 console.log(addByTwoOnce(10));  //should log 7
 console.log(addByTwoOnce(9001));  //should log 7
+
+function once(func) {
+  //CODE HERE
+  let counter = 0;
+  return function () {
+    counter++;
+    if (counter <= 1) return func();
+  };
+}
