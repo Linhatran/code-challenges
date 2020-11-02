@@ -38,3 +38,28 @@ function stitch(left, right) {
 }
 console.log(stitch([2,5,7], [9,56,89]))
 console.log(mergeSort([4,8,95,2,56,13,542,6,946,9]))
+
+<----------------Merge Sort with sorted Arrays--------->
+  function mergeSort(array1, array2) {
+  let aElm = array1[0];
+  let bElm = array2[0];
+  let i = 1;
+  let j = 1;
+  let merged = [];
+
+if (array1.length === 0) return array2;
+if (array2.length === 0) return array1;
+  while (aElm || bElm) {
+    if (aElm && !bElm || aElm < bElm) {
+   
+      merged.push(aElm);
+      aElm= array1[i++];
+    } else {
+      
+      merged.push(bElm)
+      bElm= array2[j++]
+    }
+  }
+  return merged;
+}
+console.log(mergeSort([2,8,23,56], [3,5,90])) 
