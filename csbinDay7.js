@@ -31,3 +31,11 @@ function findMissingTests() {
 }
 
 findMissingTests() 
+
+
+function findMissingNum(arr) {
+  const n = arr.length + 1;
+  const expectedSum = (n * (n + 1)) / 2;
+  const sum = arr.reduce((a, b) => a + b);
+  return expectedSum - sum;
+}
