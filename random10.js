@@ -1,4 +1,4 @@
-
+//trading space complexity with time complexity 
 
 const times10 = (n) => n*10;
 const memoize = (cb) => {
