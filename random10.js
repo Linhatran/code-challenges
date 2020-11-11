@@ -1,9 +1,11 @@
 
-const memoizedClosureTimes10 = (n) => {
+
+const times10 = (n) => n*10;
+const memoize = (cb) => {
   const cache = {};
   return (n) => {
   if (!cache[n]) {
-    let result = n*10
+    let result = cb(n)
     cache[n] = result;
     return result;
   } else {
@@ -11,5 +13,5 @@ const memoizedClosureTimes10 = (n) => {
   }
 }
 }
-const memoClosureTimes10 = memoizedClosureTimes10();
-console.log(memoClosureTimes10(9))
+const memoClosureTimes10 = memoize(times10);
+console.log(memoClosureTimes10(5))
