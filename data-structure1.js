@@ -11,7 +11,7 @@ class Stack {
   */
   push(value) { //constant time operation only, no shifting
     this._storage[value] = value;
-    return Object.keys(this._storage);
+    return Object.values(this._storage);
   }
 
   /*
@@ -19,8 +19,8 @@ class Stack {
   * @return {*} the last and newest value in the stack
   */
   pop() { //constant time operation only, no shifting
-    const length = Object.keys(this._storage).length;
-    const last = Object.keys(this._storage)[length-1];
+    const length = Object.values(this._storage).length;
+    const last = Object.values(this._storage)[length-1];
     delete this._storage[last]
     return last;
   }
@@ -29,8 +29,8 @@ class Stack {
   * @return {*} the last and newest value in the stack
   */
   peek() { //constant time operation only, no shifting
-     const length = Object.keys(this._storage).length;
-    const last = Object.keys(this._storage)[length-1];
+     const length = Object.values(this._storage).length;
+    const last = Object.values(this._storage)[length-1];
     return last;
   }
 }
