@@ -1,17 +1,15 @@
 //trading space complexity with time complexity 
 
 const times10 = (n) => n*10;
-const memoize = (cb) => {
-  const cache = {};
-  return (n) => {
-  if (!cache[n]) {
-    let result = cb(n)
-    cache[n] = result;
-    return result;
-  } else {
-    return cache[n]
+function memoize(func) {
+  const hash = {};
+  return function(...args) {
+    const stringArgs = JSON.stringify(...args);
+    if (!hash.hasOwnProperty(stringArgs)) {
+      hash[stringArgs] = func(...args)
+    } 
+    return hash[stringArgs];
   }
-}
 }
 const memoClosureTimes10 = memoize(times10);
 console.log(memoClosureTimes10(5))
