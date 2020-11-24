@@ -44,8 +44,14 @@ mode([4, []]) -> 4
 */
 
 const modeNested = (array) => {
-  array = array.flat(Infinity);
-  return mode(array);
+  const storage = {};
+  array.flat(Infinity).forEach((element) => {
+    !storage[element] ? (storage[element] = 1) : (storage[element] += 1);
+  });
+  const output = Object.keys(storage)
+    .map((key) => [Number(key), storage[key]])
+    .reduce((a, b) => (a[1] > b[1] ? a : b));
+  return output[0];
 };
 
 //attemp to write flat(Infinity)
