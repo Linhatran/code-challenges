@@ -61,6 +61,19 @@ function flattenDeep(array) {
     []
   );
 }
+
+const mode = (array) => {
+  const tally = {};
+  let modeVal = -Infinity, maxCount = 0;
+  array.forEach(val => {
+  tally(val) = (tally[val] || 0) + 1;
+    if (tally[val] > maxCount || (tally[val] === maxCount && val > modeVal)) {
+    maxCount = tally[val];
+      modeVal = val;
+    } 
+  })
+  return modeVal
+}
 console.log(flattenDeep([7, [[5, [8], 8], 2, 5]]));
 console.log(flattenDeep([3, [4, 5, [3, 7, [8, 0], 23, 4], 5]]));
 // console.log(modeNested([[3], [2, [4]], 3])); // -> 3
