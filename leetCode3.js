@@ -32,3 +32,16 @@ var isValid = function(s) {
   }
     return (!stack.length);
 };
+<----------------------------------------------->
+    var isValid = function(string) {
+        let stack = [];
+        for (let i = 0; i < string.length; i++) {
+        let item = string[i];
+         if (item === stack[stack.length-1]) {stack.pop()}
+            else if (item === '[') {stack.push(']')}
+            else if (item === '{') {stack.push('}')}
+            else if (item === '(') {stack.push(')')}
+            else return false;
+        }
+        return stack.length < 1
+    }
