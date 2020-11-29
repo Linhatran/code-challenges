@@ -1,4 +1,4 @@
-function LinkedList() {
+function LinkedList(...nums) {
   this.head = null;
   this.tail = null;
 }
@@ -25,17 +25,16 @@ LinkedList.prototype.push = function (value) {
 };
 
 // returns true if value is present in the list
-LinkedList.prototype.contains = function (val, node = this.head) {
+LinkedList.prototype.contains = function (val) {
+  let currentNode = this.head;
   //checking if we reach the inner most node
-  while (this.head.next) {
-    //if not at the last node, compare value to arg
-    if (val === this.head.value || val === this.head.next.value) return true;
-    else {
-      //traversing to the last node
-      this.head = this.head.next;
-    }
+  while (currentNode.value !== val) {
+    if (currentNode.next === null) return false;
+    currentNode = currentNode.next;
   }
-  return false;
+  return true;
+  // return currentNode.value === val;
+
   // --------- recursive solution -------///
   // //in param, initialize node = this.head
   // //base case
@@ -105,5 +104,4 @@ list.push(3);
 list.push(7);
 list.push(6);
 list.push(4);
-list.removePosition(2);
-console.log(list.head);
+console.log(list.contains(9));
