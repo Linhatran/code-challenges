@@ -10,3 +10,11 @@ const sumNested = (arr) => {
   return sum;
 }
 console.log(sumNested([3,[4,[6],[7,0]]]))
+
+const sumNested = (arr) => {
+  return arr.reduce((acc, val) => {
+    Array.isArray(val) ? acc += sumNested(val) : acc += val;
+    return acc;
+  },0)
+}
+console.log(sumNested([3,[4,[6],[7,0]]]))
