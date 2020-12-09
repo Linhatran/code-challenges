@@ -38,6 +38,22 @@ const retrieveDepth = (arr, depth, depthLevel = 0) => {
   });
   return result;
 };
+
+const retrieveDepth = (arr, depth) => {
+  let result = [];
+  const process = (arr, depth) => {
+    if (depth === 0) return ;
+    arr.forEach(item => {
+      if (!Array.isArray(item)) {
+        result.push(item)
+      } else {
+        process(item, depth-1)
+      }
+    })
+  }
+  process(arr, depth)
+  return result;
+};
 //console.log(retrieveDepth([2, [4, [7], 1], 5], 3));
 /*
 
