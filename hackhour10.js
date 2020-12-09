@@ -45,7 +45,6 @@ nestedArrMaxLevel(arrNested, 3);
 -> 10
 
 */
-
 const nestedArrMaxLevel = (arr, level) => {
   if (!arr.length) return undefined;
   let count = 1;
@@ -53,9 +52,7 @@ const nestedArrMaxLevel = (arr, level) => {
     arr = arr.flat();
     count++;
   }
-  console.log(arr);
-  arr = arr.filter((el) => !Array.isArray(el));
-  return Math.max(...arr);
+  return Math.max(...arr.filter((el) => !Array.isArray(el)));
 };
 
 console.log(nestedArrMaxLevel([1, [2, 5, [10]]], 2));
