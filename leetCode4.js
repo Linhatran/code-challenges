@@ -10,3 +10,25 @@ var twoSum = function(nums, target) {
     }
    return []
 };
+
+const threeSum = (arr, target) => {
+  //make a copy because we dont want to modify input
+  const copyArr = [...arr].sort((a, b) => a - b);
+  for (let i = 0; i < copyArr.length - 1; i++) {
+    let j = i + 1;
+    let k = copyArr.length - 1;
+    while (j < k) {
+      let sum = copyArr[i] + copyArr[j] + copyArr[k];
+      if (sum === target) {
+        return true;
+      } else if (sum > target) {
+        k--;
+      } else {
+        j++;
+      }
+    }
+  }
+  return false;
+};
+console.log(threeSum([1, 4, 7, 2, 9, 0], 19)); //false
+console.log(threeSum([2, 5, 11, 15], 31)); //true
