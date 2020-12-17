@@ -13,3 +13,16 @@ function memoize(func) {
 }
 const memoClosureTimes10 = memoize(times10);
 console.log(memoClosureTimes10(5))
+
+
+const cachePromiseFunction2 = (get) => {
+  const cache = {};
+  return function cachedPromiseFunc(url) {
+    if (!cache[url]) {
+      cache[url] = Promise.resolve(get(url));
+      return cache[url];
+    } else {
+      return cache[url];
+    }
+  };
+};
