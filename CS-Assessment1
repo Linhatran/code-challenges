@@ -1,0 +1,119 @@
+// Write a function that splits an array (first argument) into groups the length of size (second argument) and returns them as a two-dimensional array.
+
+// chunkItUp(["a", "b", "c", "d"], 2) -> [["a", "b"], ["c", "d"]].
+// chunkItUp([0, 1, 2, 3, 4, 5], 3) -> [[0, 1, 2], [3, 4, 5]].
+// chunkItUp([0, 1, 2, 3, 4, 5], 2) -> [[0, 1], [2, 3], [4, 5]].
+// chunkItUp([0, 1, 2, 3, 4, 5], 4) -> [[0, 1, 2, 3], [4, 5]].
+// chunkItUp([0, 1, 2, 3, 4, 5, 6], 3) -> [[0, 1, 2], [3, 4, 5], [6]].
+// chunkItUp([0, 1, 2, 3, 4, 5, 6, 7, 8], 4) -> [[0, 1, 2, 3], [4, 5, 6, 7], [8]].
+// chunkItUp([0, 1, 2, 3, 4, 5, 6, 7, 8], 2) -> [[0, 1], [2, 3], [4, 5], [6, 7], [8]].
+
+function chunkItUp(array, size, result = []) {
+  //declare an empty array to store the result as the param
+  //if no array or size given, return undefined
+  if (!array || !size) return undefined;
+  //base case: if array.length <= size, push array to result and return result
+  if (array.length <= size) {
+    result.push(array);
+    return result;
+  }
+  //splice the first "size" items
+  const subArr = array.splice(0, size);
+  //push them in the result
+  result.push(subArr);
+  //recursively chunk the array up
+  return chunkItUp(array, size, result);
+}
+//console.log(chunkItUp([0, 1, 2, 3, 4, 5], 3));
+// Write a function "lockDown" that takes a callback function (func) and a string as arguments.
+//The string will be a password so to speak. lockDown returns a function (secureFunc). secureFunc
+//must be provided the password string as its first argument. If the string is incorrect,
+//401 is returned. If correct, secureFunc will call func and return its output. If additional
+//arguments are passed to secureFunc, other than the password, they should all be passed to func.
+
+function lockDown(func, password) {
+  //lockDown returns a function takes in password as an argument
+  return function secureFunc(...args) {
+    //if password is incorrect, return 401
+    if (args[0] !== password) {
+      return '401';
+      //if password is correct, invoke 'func' and return its output
+    } else {
+      //if additional arguments provided, pass them to func
+      if (args.length > 1) {
+        args = args.slice(1);
+        return func(...args);
+      } else {
+        //if no second arg provided to secureFunc, return func() with no args
+        return func();
+      }
+    }
+  };
+}
+const log = function (a, b, c) {
+  console.log(a, b, c);
+};
+const secureFunc = lockDown(log, 'lolol');
+// console.log(secureFunc('lolol', 1, 2, 3)); // ->  prints 1 2 3
+// console.log(secureFunc('wrong', 1, 2, 3)); //   ->  401
+
+// write a function "arrDimensions" that takes a (nested) array and returns the number
+//of nesting levels in that array
+// arrDimensions( [2, 5, 1] );  -> 1
+// arrDimensions( [2, [5], 1] );  -> 2
+// arrDimensions( [2, [5], [3]] );  -> 2
+// arrDimensions( [2, [5], [3, [[16]]], 1] );  -> 4
+
+function arrDimensions(nestedArr, count = 1) {
+  //initialize count = 1 since nestedArr is 1 level nested
+  //if no array given, return 0 for no nesting
+  if (!Array.isArray(nestedArr))
+    return '0 nesting, please pass in a valid array';
+  //loop through the array
+  nestedArr.forEach((arr) => {
+    //if item is an array, invoke the function recursively and assign count to the greater value + 1
+    if (Array.isArray(arr)) {
+      count = Math.max(arrDimensions(arr), count) + 1;
+    }
+  });
+  //return the final count
+  return count;
+}
+//console.log(arrDimensions(2, 1));
+
+// write a function "maxBy" that takes an array and a callback as arguments. "maxBy" will
+//iterate thru the array and pass each array element to the callback as an argument.
+//"maxBy" will determine the maximum value among all the outputted values from this callback.
+//The array element that produced this value is returned by "maxBy".
+
+// const nums = [-1, 1, 5, 2, -7]
+// maxBy(nums, Math.abs)  -> -7 (because Math.abs(-7) produces 7 which is greater than all other outputs 5, 2, and 1)
+//
+// maxBy(nums, (x) => {
+//   return 2 * x - 1000;
+// });  -> 5
+function maxBy(arr, callback) {
+  // const result = [];
+  // arr.forEach((el) => result.push(callback(el)));
+  // const index = result.indexOf(Math.max(...result));
+  // return arr[index];
+
+  //second approach to optimize space complexity
+  let max;
+  arr.forEach((el) => {
+    if (!max) {
+      max = callback(el);
+    } else if (max < callback(el)) {
+      max = el;
+    }
+  });
+  return max;
+}
+const nums = [-1, 1, 5, 2, -7];
+console.log(maxBy(nums, Math.abs));
+module.exports = {
+  chunkItUp,
+  lockDown,
+  arrDimensions,
+  maxBy,
+};
