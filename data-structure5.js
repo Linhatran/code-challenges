@@ -140,3 +140,14 @@ console.log(tree.breadthFirst(func));
 // Extra Bonus
 // Remove an item from the tree and ensure that the children of the item are properly repositioned
 BinarySearchTree.prototype.remove = function (item) {};
+
+//max method
+BinarySearchTree.prototype.max = function () {
+  //the max value will be the right most value, so we recursively invoke the function until right node is null, return value at that node
+  return this.right === null ? this.value : this.right.max();
+};
+//min method
+BinarySearchTree.prototype.min = function () {
+  //the min value will be the left most value, so we recursively invoke the function until left node is null, return value at that node
+  return this.left === null ? this.value : this.left.min();
+};
