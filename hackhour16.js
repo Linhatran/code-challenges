@@ -36,6 +36,20 @@ function kthToLastNode(k, head) {
   cache.push(head.value);
   return cache[cache.length - k];
 }
+function kthToLastNode(k, head){
+  if (k === 0 || head === undefined) return undefined
+  let leadingNode = head
+  let followingNode = head
+  for (let i = 1; i < k; i += 1) {
+    if (leadingNode.next === null) return undefined
+    leadingNode = leadingNode.next
+  }
+  while(leadingNode.next !== null) {
+    leadingNode = leadingNode.next
+    followingNode = followingNode.next
+  }
+  return followingNode.value;
+}
 const a = new Node('A');
 const b = new Node('B');
 const c = new Node('C');
