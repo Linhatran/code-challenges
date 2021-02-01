@@ -44,6 +44,22 @@ const subsetSumClosest = (nums, target) => {
   })(0)
   return Math.min(...result);
 };
+
+
+const subsetSumClosest = (nums, target) => {
+  let minDifference = Infinity;
+  const generate = (target, index) => {
+    if (index === nums.length) {
+      minDifference = Math.min(minDifference, Math.abs(target));
+      return minDifference;
+    }
+    generate(target - nums[index], index+1);
+    generate(target, index+1);
+  }
+  generate(target, 0);
+  return minDifference;
+}
+console.log(subsetSumClosest([3,7,8,2], 5));
 console.log(subsetSumClosest([3,7,8,2], 5));
 /*
 
