@@ -85,8 +85,26 @@ const superbalanced = (tree) => {
       && superbalanced(tree.right) 
       && Math.abs(bstHeight(tree.left) - bstHeight(tree.right)) <= 1)
 };
-
-
-console.log(superbalanced(tree))
+const memoHeight = (tree, memo) => {
+  // if tree has not been memoized in memo, do calculations
+  if (!memo.has(tree)) {
+    if (tree) {
+      const lHeight = memoHeight(tree.left, memo) + 1;
+      const rHeight = memoHeight(tree.right, memo) + 1;
+      memo.set(tree, Math.max(lHeight, rHeight))
+    } 
+    else memo.set(tree, -1)
+  }
+  return memo.get(tree);
+}
+const superbalancedOptimized = (tree, memo = new Map()) => {
+    if (tree === null) return true;
+    return (
+      superbalancedOptimized(tree.left) &&
+      superbalancedOptimized(tree.right) &&
+      Math.abs(memoHeight(tree.left, memo) - memoHeight(tree.right, memo)) <= 1
+    )  
+}
+console.log(superbalancedOptimized(tree))
 
 module.exports = { BinarySearchTree, bstHeight, superbalanced };
