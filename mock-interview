@@ -1,0 +1,68 @@
+import React, { Component, useEffect, useState } from "react";
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 0,
+      timer: 0,
+    };
+    this.interval = "";
+  }
+
+  componentDidMount() {
+    this.interval = window.setInterval(() => {
+      this.setState((state) => {
+        return { timer: state.timer + 1 };
+      });
+    }, 1000);
+  }
+
+  componentWillUnmount() {
+    window.clearInterval(this.interval);
+  }
+
+  setCount = () => {
+    this.setState((state) => {
+      return { count: state.count + 1 };
+    });
+  };
+
+  render() {
+    const { count, timer } = this.state;
+    return (
+      <div className="App">
+        <p>Timer {timer}</p>
+        <p>You Clicked {count} times</p>
+        <button onClick={this.setCount}>Click</button>
+      </div>
+    );
+  }
+}
+
+
+export default App;
+
+import React, { useEffect, useState } from "react";
+
+const App = () => {
+ const [count, setCount] = useState(0);
+ const [timer, setTimer] = useState(0);
+  let interval = '';
+  useEffect(() => {
+    interval = window.setInterval(()=> {
+      setTimer(timer => timer + 1)
+    }, 1000)
+    return () => window.clearInterval(interval)
+  },[])
+
+    return (
+      <div className="App">
+        <p>Timer {timer}</p>
+        <p>You Clicked {count} times</p>
+        <button onClick={() => setCount(count + 1)}>Click</button>
+      </div>
+    );
+  }
+
+export default App;
