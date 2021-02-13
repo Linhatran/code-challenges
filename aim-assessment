@@ -1,0 +1,143 @@
+import React, { useState, useEffect } from 'react';
+import ReactDOM from 'react-dom';
+
+const style = {
+  table: {
+    borderCollapse: 'collapse'
+  },
+  tableCell: {
+    border: '1px solid gray',
+    margin: 0,
+    padding: '5px 10px',
+    width: 'max-content',
+    minWidth: '150px'
+  },
+  form: {
+    container: {
+      padding: '20px',
+      border: '1px solid #F0F8FF',
+      borderRadius: '15px',
+      width: 'max-content',
+      marginBottom: '40px'
+    },
+    inputs: {
+      marginBottom: '5px',
+    },
+    submitBtn: {
+      marginTop: '10px',
+      padding: '10px 15px',
+      border:'none',
+      backgroundColor: 'lightseagreen',
+      fontSize: '14px',
+      borderRadius: '5px'
+    }
+  }
+}
+
+    // destructure addEntryToPhoneBook from props
+function PhoneBookForm({ addEntryToPhoneBook }) {
+  // create hooks to keep track of states of firstName, lastName, and phoneNumber upon form submission event
+  // set default value for firstName to be 'Coder' to prepopulate the input field on load
+  const [firstName, setFirstName] = useState('Coder');
+  // set default value for lastName to be 'Byte' to prepopulate the input field on load
+  const [lastName, setLastName] = useState('Byte');
+  // set default value for phonenNumber to be '888555999' to prepopulate the input field on load
+  const [phoneNumber, setPhoneNumber] = useState('888555999');
+  
+  return (
+    // invoke addEntryToPhoneBook on form submittion to update the state of 'info' in App component
+    <form onSubmit={e => { e.preventDefault(); addEntryToPhoneBook(firstName, lastName, phoneNumber)}} style={style.form.container}>
+      <label>First name:</label>
+      <br />
+      <input 
+        style={style.form.inputs}
+        className='userFirstname'
+        name='userFirstname' 
+        type='text'
+        value={firstName} // prepopulate value with firstName 
+        onChange={e => setFirstName(e.target.value)} // update value of firstName as user types in input field
+      />
+      <br/>
+      <label>Last name:</label>
+      <br />
+      <input 
+        style={style.form.inputs}
+        className='userLastname'
+        name='userLastname' 
+        type='text'
+        value={lastName} // prepopulate value with lastName
+        onChange={e => setLastName(e.target.value)} // update value of lastName as user types in input field
+      />
+      <br />
+      <label>Phone:</label>
+      <br />
+      <input
+        style={style.form.inputs}
+        className='userPhone' 
+        name='userPhone' 
+        type='text'
+        value={phoneNumber} // prepopulate value with phoneNumber
+        onChange={e => setPhoneNumber(e.target.value)} // update value of phoneNumber as user types in input field
+      />
+      <br/>
+      <input 
+        style={style.form.submitBtn} 
+        className='submitButton'
+        type='submit' 
+        value='Add User' 
+      />
+    </form>
+  )
+}
+
+function InformationTable({info}) {
+  const [entries, setEntries] = useState([]);
+  // use Effect hook to subscribe to update in info
+  useEffect(()=> {
+      setEntries([...entries, info].filter(entry => JSON.stringify(entry) !== '{}').sort((a,b) => a.lastName > b.lastName ? 1 : -1))
+      // pass [info] as the second argument to Effect Hook to optimize rerendering (only rerun effect if 'info' updates) 
+  }, [info])
+ 
+  return (
+    <table style={style.table} className='informationTable'>
+      <thead> 
+        <tr>
+          <th style={style.tableCell} >First name</th>
+          <th style={style.tableCell} >Last name</th>
+          <th style={style.tableCell} >Phone</th>
+        </tr>
+        {entries.map((entry, i) => (
+          // assign unique value to each 'key' property in each row being rendered to handle minimal DOM changes
+        <tr key={'row-'+i}>
+          // populate firstName, lastName, and phoneNumber from each entry object to appropriate column in each row
+          <td style={style.tableCell} >{entry.firstName}</td>
+          <td style={style.tableCell} >{entry.lastName}</td>
+          <td style={style.tableCell} >{entry.phoneNumber}</td>
+        </tr>
+        ))}
+      </thead> 
+    </table>
+  );
+}
+
+function Application(props) {
+  // create a hook to manage state of info with an initial value of an empty object 
+  const [info, setInfo] = useState({})
+  // declare a function definition addEntryToPhoneBook to update state of info to be an object with keys firstName, lastName, phoneNumber
+  const addEntryToPhoneBook = (firstName, lastName, phoneNumber) => {
+    setInfo({firstName, lastName, phoneNumber})
+  }
+  return (
+    <section>
+    // pass down addEntryToPhoneBook as a prop for PhoneBookForm so that form submission will update 'info'
+      <PhoneBookForm addEntryToPhoneBook={addEntryToPhoneBook} />
+    // pass down info to InformationTable to update table on form submission
+      <InformationTable info={info}/>
+    </section>
+  );
+}
+
+ReactDOM.render(
+  <Application />,
+  document.getElementById('root')
+);
