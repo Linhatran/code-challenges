@@ -1,0 +1,15 @@
+// a tree in form of an array. first index is root, odd index: left side, even index: right side. return empty string if balance or if any num <= 0; else return branch with larger value
+const solution = (arr) => {
+    // Type your solution here 
+    arr = arr.filter(num => num > 0);
+    let left = 0;
+    let right = 0;
+    for (let i = 1; i < arr.length; i++) {
+        if (i % 2 === 0) {
+        right += arr[i]
+        } else left += arr[i]
+    }
+    if (!arr.length || left === right) return '';
+    return right > left ? "Right" : "Left";
+};
+
