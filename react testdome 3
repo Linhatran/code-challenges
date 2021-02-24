@@ -1,0 +1,43 @@
+// React is loaded and is available as React and ReactDOM
+// imports should NOT be used
+class Message extends React.Component {
+  constructor() {
+    super()
+  this.state = {
+    rendered: false
+    }
+  this.toggleShow = this.toggleShow.bind(this);
+  this.toggleHide = this.toggleHide.bind(this);
+  }
+  toggleHide () {
+    this.setState({rendered: false})
+  }
+  toggleShow() {
+    this.setState({rendered: true})
+  }
+  render() {
+    const isRendered = this.state.rendered;
+    let link;
+    let paragraph;
+    if (isRendered) {
+      link = <a href="#" onClick={this.toggleHide}>Want to buy a new car?</a>
+      paragraph = <p>Call +11 22 33 44 now!</p>
+    } else {
+      link = <a href="#" onClick={this.toggleShow}>Want to buy a new car?</a>
+      paragraph=''
+    }
+    return (<React.Fragment>
+          {link}
+          {paragraph}
+        </React.Fragment>);
+  }
+}
+
+document.body.innerHTML = "<div id='root'> </div>";
+  
+const rootElement = document.getElementById("root");
+ReactDOM.render(<Message />, rootElement);
+
+console.log("Before click: " + rootElement.innerHTML);
+document.querySelector("a").click();
+console.log("After click: " + rootElement.innerHTML);
