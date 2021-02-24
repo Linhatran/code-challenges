@@ -1,0 +1,39 @@
+// React is loaded and is available as React and ReactDOM
+// imports should NOT be used
+class Rating extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      selected: -1
+    }
+    this.handleRating = this.handleRating.bind(this);
+  }
+  handleRating(index) {
+    this.setState({selected: index})
+  }
+  render() {
+    const ratings = [<span>*</span>,
+      <span>*</span>,
+      <span>*</span>,
+      <span>*</span>,
+      <span>*</span>];
+    const selected = this.state.selected;
+    return <div id='rating'>
+      {ratings.map((rating,i) => {
+        if (i <= selected) {
+          return <span key={i} onClick={() => this.handleRating(i)} class="active">*</span>
+        } else {
+          return <span key={i} onClick={() => this.handleRating(i)}>*</span>
+        }
+      })}
+    </div>;
+  }
+}
+
+document.body.innerHTML = "<div id='root'> </div>";
+  
+const rootElement = document.getElementById("root");
+ReactDOM.render(<Rating />, rootElement);
+
+document.querySelectorAll("span")[2].click();
+console.log(document.getElementById("rating").outerHTML);
