@@ -12,3 +12,40 @@ const FocusableInput = (props) => {
 document.body.innerHTML = "<div id='root' />";
 ReactDOM.render(<FocusableInput />, document.getElementById("root"));
 setTimeout(() => console.log(document.getElementById("root").innerHTML));
+
+
+// set focus on button click
+import React, { useEffect, useRef } from "react";
+
+function App() {
+  const searchInput = useRef(null)
+
+  function handleFocus(){
+    searchInput.current.focus()
+  }
+
+  return (
+    <div>
+      <label>Search </label>
+      <input ref={searchInput} />
+      <button onClick={handleFocus}>Set focus</button>
+    </div>
+  );
+}
+
+// focus on input 
+import React,{Component} from 'react';
+
+class App extends Component {
+  componentDidMount() {
+    this.searchInput.focus();
+  }
+  render() {
+    return (
+      <div>
+        <label>Search </label>
+        <input ref={inputEl => (this.searchInput = inputEl)} />
+      </div>
+    );
+  }
+}
