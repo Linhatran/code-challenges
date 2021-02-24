@@ -1,0 +1,37 @@
+const hasPath = function(maze, row, col) {
+    row = 0;
+    col = maze[0].indexOf(0)
+    maze[row][col] = 1;
+    return searchMazeHelper(maze, row, col);
+};
+function searchMazeHelper(maze, r, c) { // dfs
+  const maxRow = maze.length-1;
+  const maxCol = maze[0].length-1;
+    if (r === maxRow) {
+        return true;
+    }
+    let neighborIndices, neighbor;
+    // Indices: 0->top,1->right, 2->bottom, 3->left 
+    let directions = [ [0,1] , [1,0] , [0,-1] , [-1,0] ];
+    for (const direction of directions) {
+        r = r + direction[0];
+        c = c + direction[1];
+        if (isFeasible(maze, r, c)) {
+            maze[r][c] = 1;
+            if (searchMazeHelper(maze, r, c)) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+function isFeasible(maze, sR, sC) {
+    let x = sR;
+    let y = sC;
+    return x >= 0 && x < maze.length && y >= 0 && y < maze[x].length && maze[x][y] === 0;
+}
+console.log(hasPath([
+  [1,0,1],
+  [1,0,1],
+  [1,0,1]
+]))
