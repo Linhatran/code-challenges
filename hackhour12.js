@@ -16,6 +16,29 @@ const matrixTranspose = (matrix) => {
   }
   return Object.values(cache);
 };
+
+onst matrixTranspose = matrix => {
+  if (!matrix.length) return matrix;
+
+  const transposed = [];
+  
+  for (let i = 0; i < matrix[0].length; i += 1) {
+    const row = [];
+    for (let j = 0; j < matrix.length; j += 1) {
+      row.push(matrix[j][i]);
+    }
+    transposed.push(row);
+  }
+
+  return transposed;
+};
+
+// Solution #2: Using Array.prototype.map
+const matrixTranspose = matrix => {
+  if (!matrix.length) return matrix;
+  return matrix[0].map((col, i) => matrix.map(row => row[i]));
+};
+
 const twoDimArray = [
   ['fred', 'barney'],
   [30, 40],
