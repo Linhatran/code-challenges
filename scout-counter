@@ -1,0 +1,22 @@
+import "./styles.css";
+import {useState, useEffect, useCallback } from 'react';
+
+export default function App() {
+  const [counter, setCounter] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+  const handleCounter = useCallback(() => setCounter(prev => prev+=1), [])
+  useEffect(() => {
+    const id = setTimeout(()=>{
+      setIsVisible(true)
+    }, 3000)
+    return () => clearTimeout(id)
+  },[])
+  return (
+    <div className="App">
+      <h1>Hello CodeSandbox</h1>
+      <h2>Start editing to see some magic happen!</h2>
+      <p>{counter}</p>
+      {isVisible ? <button onClick={handleCounter}>Counter</button> : null}
+    </div>
+  );
+}
